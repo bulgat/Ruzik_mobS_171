@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+
+<cross-domain-policy>
+   <allow-access-from domain="*.mail.ru" to-ports="*" />
+   <allow-access-from domain="appsmail.ru" to-ports="*" />
+   <allow-access-from domain="*.appsmail.ru" to-ports="*" />
+   <site-control permitted-cross-domain-policies="all" />
+
+  <allow-access-from domain="*.vkontakte.ru" to-ports="80"/>
+  <allow-access-from domain="*.vk.com" to-ports="80"/>
+  <allow-access-from domain="*.vkontakte.ru" to-ports="9339" />
+  <allow-access-from domain="*.vk.com" to-ports="9339" />
+  <allow-access-from domain="*.vkontakte.ru" to-ports="9337" />
+  <allow-access-from domain="*.vk.com" to-ports="9337" />
+  
+  <allow-access-from domain="*.liptonicetea.accorddigital.ru" to-ports="80" />
+ 
+  <allow-access-from domain="*" to-ports="*" />
+</cross-domain-policy>
