@@ -12,10 +12,10 @@
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
 	import flash.display.StageAlign;
-	import flash.display.StageOrientation;
+	//import flash.display.StageOrientation;
 	import flash.display.StageScaleMode;
-	import flash.desktop.NativeApplication;
-	import flash.display.NativeWindow;
+	//import flash.desktop.NativeApplication;
+	//import flash.display.NativeWindow;
 	///end  mobile
  
 	public class Preloader extends MovieClip
@@ -28,12 +28,13 @@
 			///mobile
 			// support autoOrients
 			stage.align = StageAlign.TOP;
-			//stage.fullScreenHeight;
-			//stage.fullScreenWidth;
+
 			//ВРЕМЕННО отключена для работы на swf
+			/*
 			stage.autoOrients = false;
 			stage.setOrientation( StageOrientation.ROTATED_RIGHT );
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKey);
+			*/
 			/// end mobile
 			
 			stop();
@@ -50,8 +51,7 @@
 		{
 			
 			gotoAndStop(4);
-			//Priming.visible = false;
-			//Priming.NextButton.visible = false;
+
 			var mainClass:Class = getDefinitionByName("index_as") as Class;
 			main = new mainClass();
 			addChild(main);
@@ -60,11 +60,15 @@
 		
 		public function close_this():void
 		{
+			/*
 		NativeApplication.nativeApplication.exit();
+			*/
 		}
 		public function onKey(e:KeyboardEvent):void {
 		if(e.keyCode == Keyboard.BACK) {
+			/*
 		NativeApplication.nativeApplication.exit();
+			*/
 		} 
 		}
 		/// end mobile
