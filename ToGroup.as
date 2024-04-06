@@ -9,13 +9,13 @@
 		
 		var expand:Boolean;
 		var Bubble_Help_mc:Bubble_Help = new Bubble_Help();
-		
+		var hight:int=0;
 		public function ToGroup(Hight:int) {
 			
 			this.x = 194;
 			this.y = Hight - 80;
 			//this.y = 520;
-			
+			hight = Hight;
 			
 			group.addEventListener(MouseEvent.CLICK, clickH);
 			group.buttonMode = true;
@@ -43,15 +43,59 @@
 			addEventListener (Event.ENTER_FRAME, updateAll);
 			//Space();
 		}
+		var count:int=1;
+		var fonMc = new fon_mc();
+		var space = new spaceShipTravel_mc();
 		private function Space(){
-			var fon = new fon_mc();
-			addChild(fon);
-				var space = new spaceShipTravel_mc();
-				addChild(space);
+			//fonMc 
+			//quest.visible = false;
+			fonMc.kol.text="qqqqqqqqqqqqqqяяяяяяяяяяяяяяяяя";
+			
+			addChild(fonMc);
+			fonMc.goto.addEventListener(MouseEvent.CLICK, clickSpace);
+			space.x = -50;
+			//space.y=-30;
+			space.y=-hight+261+230;
+			addChild(space);
 			space.gotoAndStop(0);
-			space.animation.gotoAndStop (45);
+			space.animation.gotoAndStop(1);
+			var count = space.numChildren;
+			var countText ="";
+			for (var i:uint = 0; i < space.numChildren; i++){
+				countText+="|"+space.getChildAt(i).name+"("+space.getChildAt(i).parent+")";
+				if (space.getChildAt(i).name!="animation"){
+					space.getChildAt(i).visible =false;
+				}
+			}
+			countText+="### w="+space.width+" h="+space.height;
+			
+			space.m_1.visible =false; 
+			space.m_2.visible =false; 
+			space.m_3.visible =false;
+			space.m_4.visible =false; 
+			space.m_5.enabled =false; 
+			space.m_6.enabled =false;
+			space.m_7.enabled =false; 
+			space.m_8.enabled =false;
+			
+			space.border_1.visible =false; 
+			space.border_2.visible =false; 
+			
+			space.panel_1.visible =false; 
+			space.panel_2.visible =false; 
+			
+			//space.instance4765.visible =false; 
+			space.object_mc.visible =false; 
+			fonMc.kol.text="count = "+count+" | "+countText;
 			trace("__________________________________________space");
 		}
+		private function clickSpace(e:MouseEvent):void{
+			count++;
+			space.animation.gotoAndStop (count);
+			
+			fonMc.kol.text="frame=" +count;
+		}
+		
 		public function updateAll(e:Event)
 		{
 			if (expand) {
