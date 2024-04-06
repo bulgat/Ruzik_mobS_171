@@ -5,6 +5,15 @@
 	import flash.net.navigateToURL;
 	import flash.net.URLRequest;
 	import flash.events.Event;
+	import flash.display.BitmapData;
+	import flash.geom.Rectangle;
+	import flash.geom.Point;	
+	import flash.utils.ByteArray;
+	import flash.net.FileReference;
+	import flash.net.FileFilter; 
+	import com.adobe.images.PNGEncoder;	
+	import flash.display.Bitmap;
+	
 	public class ToGroup extends MovieClip {
 		
 		var expand:Boolean;
@@ -53,6 +62,7 @@
 			
 			addChild(fonMc);
 			fonMc.goto.addEventListener(MouseEvent.CLICK, clickSpace);
+			fonMc.save.addEventListener(MouseEvent.CLICK, clickSave);
 			space.x = -50;
 			//space.y=-30;
 			space.y=-hight+261+230;
@@ -87,7 +97,7 @@
 			//space.instance4765.visible =false; 
 			space.object_mc.visible =false; 
 			fonMc.kol.text="count = "+count+" | "+countText;
-			trace("__________________________________________space");
+			
 		}
 		private function clickSpace(e:MouseEvent):void{
 			count++;
@@ -95,7 +105,43 @@
 			
 			fonMc.kol.text="frame=" +count;
 		}
-		
+		private function clickSave(e:MouseEvent):void{
+			trace("______________________ ______space");
+			//var bitmap1 = new Bitmap(this.clone());
+			//var bmd2:BitmapData = this.parent.clone();
+			//var bmp:Bitmap = this as Bitmap;
+			
+			var bitmapData = new BitmapData(80, 30, true);
+			//var mcExternal= this as Bitmap;
+			
+			var size_img_w =260;
+			var size_img_h =430;
+			var sizeImg_w =260;
+			var sizeImg_h =330;
+			var rect:Rectangle = new Rectangle(0, 180, sizeImg_w, sizeImg_h);
+			var pt:Point = new Point(0, 0);
+			var bmpCutData:BitmapData = new BitmapData(size_img_w, size_img_h);
+			bmpCutData.draw(stage,null,null,null,rect);
+			//bmpCutData.copyPixels(stage as BitmapData, rect, new Point());
+			//var bmpData:BitmapData = mcExternal.bitmapData;
+			//bmpCutData.copyPixels(this as BitmapData, rect, pt);
+			//var ttt = (this.parent as MovieClip) as BitmapData;
+			//bmpCutData.copyPixels(ttt, rect, pt);
+			var bmpCutData0:BitmapData = new BitmapData(size_img_w, size_img_h-180);
+			bmpCutData0.copyPixels(bmpCutData, rect, pt);
+			
+			save_deal (bmpCutData0);
+		}
+		public function save_deal (fon111_bmpData:BitmapData):void
+		{
+			
+			var brr:ByteArray = PNGEncoder.encode(fon111_bmpData);
+			var MyFile:FileReference = new FileReference();
+			MyFile.save(brr, "space"+count+".png");
+			
+			
+			
+		}
 		public function updateAll(e:Event)
 		{
 			if (expand) {
