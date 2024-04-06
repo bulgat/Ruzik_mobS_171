@@ -37,7 +37,20 @@
 			quest.addEventListener(MouseEvent.MOUSE_OVER, Add_Help_Menu);
 			quest.addEventListener(MouseEvent.MOUSE_OUT, Remove_Help_Menu);
 			quest.Help = "Квесты игрока";
+			
+		
+			
 			addEventListener (Event.ENTER_FRAME, updateAll);
+			//Space();
+		}
+		private function Space(){
+			var fon = new fon_mc();
+			addChild(fon);
+				var space = new spaceShipTravel_mc();
+				addChild(space);
+			space.gotoAndStop(0);
+			space.animation.gotoAndStop (45);
+			trace("__________________________________________space");
 		}
 		public function updateAll(e:Event)
 		{
